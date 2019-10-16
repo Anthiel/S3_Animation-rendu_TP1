@@ -3,6 +3,7 @@
 
 #include <QVector3D>
 #include <QOpenGLShaderProgram>
+#include <cmath>
 
 
 class Puff
@@ -20,7 +21,7 @@ public:
 
 
     QVector3D position,direction;
-    float size,lifeTimeLeft;
+    float size,lifeTimeLeft,initialLifeTime;
     QMatrix4x4 modelMatrixParticule;
 };
 

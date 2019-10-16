@@ -7,6 +7,8 @@ uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 uniform float particleSize;
 
+uniform float lifeTimeSize;
+
 void main() {
     uv = in_uv;
 
@@ -27,6 +29,6 @@ void main() {
     modelView[2][1] = 0.0;
     modelView[2][2] = 1.0;
 
-    vec4 pos = vec4(vec3(in_position) * particleSize, 1.0);
+    vec4 pos = vec4(vec3(in_position) * particleSize * lifeTimeSize, 1.0);
     gl_Position = projectionMatrix * modelView * pos;
 }

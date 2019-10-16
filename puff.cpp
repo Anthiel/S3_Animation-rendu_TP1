@@ -6,6 +6,7 @@ Puff::Puff()
     this->direction={0,0,0};
     this->size=1;
     this->lifeTimeLeft=0;
+    this->initialLifeTime=lifeTimeLeft;
 }
 
 
@@ -15,6 +16,7 @@ Puff::Puff(QVector3D position, QVector3D direction, float size, float lifeTimeLe
     this->direction=direction;
     this->size=size;
     this->lifeTimeLeft=lifeTimeLeft;
+    this->initialLifeTime=lifeTimeLeft;
 }
 
 void Puff::animate(float dt)
@@ -26,7 +28,11 @@ void Puff::animate(float dt)
 }
 
 void Puff::display(QOpenGLShaderProgram *program_particule){
+    modelMatrixParticule.setToIdentity();
     modelMatrixParticule.translate(position);
     program_particule->setUniformValue("modelMatrix", modelMatrixParticule);
     program_particule->setUniformValue("particleSize", size);
+    program_particule->setUniformValue("lifeTimeSize", (float) std::min(initialLifeTime/((double) sqrt(lifeTimeLeft+1)),(double) 2*initialLifeTime) );
+    program_particule->setUniformValue("lifeTimeOpacity", (float) std::max(lifeTimeLeft/initialLifeTime -0.2, 0.0) );
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 }

@@ -213,16 +213,17 @@ void GLArea::paintGL()
     // Affichage d'une particule
 
     // Affichage des particules
+    glDepthMask(GL_FALSE);
     vbo_particule.bind();
     program_particule->bind(); // active le shader program des particules
 
     program_particule->setUniformValue("projectionMatrix", projectionMatrix);
     program_particule->setUniformValue("viewMatrix", viewMatrix);
 
-    QMatrix4x4 modelMatrixParticule;
-    modelMatrixParticule.translate(10.0f, 1.0f, 4.0f);
-    program_particule->setUniformValue("modelMatrix", modelMatrixParticule);
-    program_particule->setUniformValue("particleSize", 1.0f);
+//    QMatrix4x4 modelMatrixParticule;
+//    modelMatrixParticule.translate(10.0f, 1.0f, 4.0f);
+//    program_particule->setUniformValue("modelMatrix", modelMatrixParticule);
+//    program_particule->setUniformValue("particleSize", 1.0f);
 
     program_particule->setAttributeBuffer("in_position", GL_FLOAT, 0, 3, 5 * sizeof(GLfloat));
     program_particule->setAttributeBuffer("in_uv", GL_FLOAT, 3 * sizeof(GLfloat), 2, 5 * sizeof(GLfloat));
@@ -233,7 +234,13 @@ void GLArea::paintGL()
     glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
 
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+
+    s1.display(program_particule);
+
+    s2.display(program_particule);
+    s3.display(program_particule);
+
+
 
     glDisable(GL_BLEND);
     textures[1]->release();
@@ -241,12 +248,13 @@ void GLArea::paintGL()
     program_particule->disableAttributeArray("in_position");
     program_particule->disableAttributeArray("in_uv");
     program_particule->release();
+    glDepthMask(GL_TRUE);
 }
 
 
 void GLArea::keyPressEvent(QKeyEvent *ev)
 {
-    float da = 1.0f;
+    float da = 1.0f,dxy=0.1;
 
     switch(ev->key()) {
         case Qt::Key_A :
@@ -276,6 +284,22 @@ void GLArea::keyPressEvent(QKeyEvent *ev)
 
         case Qt::Key_D :
             zRot += da;
+            update();
+            break;
+        case Qt::Key_Up :
+            s3.move(0,-dxy);
+            update();
+            break;
+        case Qt::Key_Down :
+            s3.move(0,dxy);
+            update();
+            break;
+        case Qt::Key_Left :
+            s3.move(-dxy,0);
+            update();
+            break;
+        case Qt::Key_Right :
+            s3.move(dxy,0);
             update();
             break;
     }
@@ -329,6 +353,9 @@ void GLArea::onTimeout()
     qint64 chrono = elapsedTimer.elapsed();
     dt = (chrono - old_chrono) / 1000.0f;
     old_chrono = chrono;
+    s1.animate(dt);
+    s2.animate(dt);
+    s3.animate(dt);
 
 
 
