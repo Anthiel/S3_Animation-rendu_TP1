@@ -17,7 +17,7 @@ Puff::Puff(QVector3D position, QVector3D direction, float size, float lifeTimeLe
     this->lifeTimeLeft=lifeTimeLeft;
 }
 
-Puff::animate(float dt)
+void Puff::animate(float dt)
 {
     this->lifeTimeLeft-=dt;
     if(this->lifeTimeLeft>0){
@@ -25,6 +25,8 @@ Puff::animate(float dt)
     }
 }
 
-void Puff::display(){
-
+void Puff::display(QOpenGLShaderProgram *program_particule){
+    modelMatrixParticule.translate(position);
+    program_particule->setUniformValue("modelMatrix", modelMatrixParticule);
+    program_particule->setUniformValue("particleSize", size);
 }

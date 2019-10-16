@@ -211,13 +211,16 @@ void GLArea::paintGL()
 
 
     // Affichage d'une particule
+
+    // Affichage des particules
     vbo_particule.bind();
     program_particule->bind(); // active le shader program des particules
 
-    QMatrix4x4 modelMatrixParticule;
-    modelMatrixParticule.translate(10.0f, 1.0f, 4.0f);
     program_particule->setUniformValue("projectionMatrix", projectionMatrix);
     program_particule->setUniformValue("viewMatrix", viewMatrix);
+
+    QMatrix4x4 modelMatrixParticule;
+    modelMatrixParticule.translate(10.0f, 1.0f, 4.0f);
     program_particule->setUniformValue("modelMatrix", modelMatrixParticule);
     program_particule->setUniformValue("particleSize", 1.0f);
 
@@ -229,7 +232,9 @@ void GLArea::paintGL()
     textures[1]->bind();
     glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
+
     glDrawArrays(GL_TRIANGLES, 0, 6);
+
     glDisable(GL_BLEND);
     textures[1]->release();
 

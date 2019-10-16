@@ -37,10 +37,10 @@ void Smoke::animate(float dt){
     }
 }
 
-void Smoke::display(){
+void Smoke::display(QOpenGLShaderProgram *program_particule){
     std::list<Puff>::iterator j = puffsList.begin();
     while( j != puffsList.end() )
     {
-        j->display();
+        j->display(program_particule);
     }
 }

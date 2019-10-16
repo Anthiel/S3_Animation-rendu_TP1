@@ -2,6 +2,7 @@
 #define PUFF_H
 
 #include <QVector3D>
+#include <QOpenGLShaderProgram>
 
 
 class Puff
@@ -11,7 +12,7 @@ public:
     Puff(QVector3D position, QVector3D direction, float size, float lifeTimeLeft);
 
     void animate(float dt);
-    void display();
+    void display(QOpenGLShaderProgram *program_particule);
 
 
 
@@ -20,6 +21,7 @@ public:
 
     QVector3D position,direction;
     float size,lifeTimeLeft;
+    QMatrix4x4 modelMatrixParticule;
 };
 
 #endif // PUFF_H

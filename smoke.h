@@ -2,7 +2,6 @@
 #define SMOKE_H
 
 #include "puff.h"
-#include <QVector3D>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
@@ -14,7 +13,7 @@ class Smoke
 public:
     Smoke(QVector3D vec, float timeInterval);
     void animate(float dt);
-    void display();
+    void display(QOpenGLShaderProgram *program_particule);
 
 
     QVector3D pos;
