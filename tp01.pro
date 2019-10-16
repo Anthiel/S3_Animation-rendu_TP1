@@ -16,10 +16,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         princ.cpp \
-        glarea.cpp
+        glarea.cpp \
+    puff.cpp
 
 HEADERS  += princ.h \
-        glarea.h
+        glarea.h \
+    puff.h
 
 FORMS    += princ.ui
 
