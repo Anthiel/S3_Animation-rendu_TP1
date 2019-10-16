@@ -14,6 +14,7 @@ public:
     void animate(float dt);
     void display(QOpenGLShaderProgram *program_particule);
     void move(float dx, float dy);
+    void setColor(QVector3D color);
 
 
     QVector3D pos;

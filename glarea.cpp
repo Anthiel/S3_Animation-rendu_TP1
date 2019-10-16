@@ -238,6 +238,7 @@ void GLArea::paintGL()
     s1.display(program_particule);
 
     s2.display(program_particule);
+    s3.setColor(QVector3D(40/255.0,0/255.0,200/255.0));
     s3.display(program_particule);
 
 

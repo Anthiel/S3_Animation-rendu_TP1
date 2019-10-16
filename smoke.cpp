@@ -7,7 +7,7 @@ Smoke::Smoke(QVector3D vec, float timeInterval)
     this->timeInterval = timeInterval;
     this->pos = vec;
     this->elapsedTime = 0.0f;
-    this->color= QVector3D(40/255.0,0/255.0,200/255.0);
+    this->color= QVector3D(1.0,1.0,1.0);
 }
 
 void Smoke::animate(float dt){
@@ -38,6 +38,10 @@ void Smoke::animate(float dt){
 
 void Smoke::move(float dx, float dy){
     pos+=QVector3D(dx,0,dy);
+}
+
+void Smoke::setColor(QVector3D color){
+    this->color=color;
 }
 
 void Smoke::display(QOpenGLShaderProgram *program_particule){
