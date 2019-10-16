@@ -1,6 +1,6 @@
-in vec4 in_position;
-in vec4 in_uv;
-out vec4 uv;
+attribute vec4 in_position;
+attribute vec4 in_uv;
+varying vec4 uv;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
