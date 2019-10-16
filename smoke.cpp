@@ -38,5 +38,9 @@ void Smoke::animate(float dt){
 }
 
 void Smoke::display(){
-
+    std::list<Puff>::iterator j = puffsList.begin();
+    while( j != puffsList.end() )
+    {
+        j->display();
+    }
 }

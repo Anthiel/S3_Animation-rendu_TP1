@@ -3,7 +3,11 @@
 
 #include "puff.h"
 #include <QVector3D>
-
+#include <QOpenGLWidget>
+#include <QOpenGLFunctions>
+#include <QOpenGLBuffer>
+#include <QOpenGLShaderProgram>
+#include <QOpenGLTexture>
 
 class Smoke
 {
