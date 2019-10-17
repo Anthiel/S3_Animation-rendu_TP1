@@ -20,6 +20,10 @@ GLArea::GLArea(QWidget *parent) :
     setFocusPolicy(Qt::StrongFocus);    // accepte focus
     setFocus();                         // donne le focus
 
+
+
+    s3.setColor(QVector3D(40/255.0,0/255.0,200/255.0));
+
     timer = new QTimer(this);
     timer->setInterval(50);           // msec
     connect (timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
@@ -148,9 +152,9 @@ void GLArea::makeGLObjects()
         qDebug() << "load image ground.jpg failed";
     textures[0] = new QOpenGLTexture(image_sol);
 
-    QImage image_particule(":/textures/puff.png");
+    QImage image_particule(":/textures/puffs.png");
     if (image_particule.isNull())
-        qDebug() << "load image puff.png failed";
+        qDebug() << "load image puffs.png failed";
     textures[1] = new QOpenGLTexture(image_particule);
 }
 
@@ -220,11 +224,6 @@ void GLArea::paintGL()
     program_particule->setUniformValue("projectionMatrix", projectionMatrix);
     program_particule->setUniformValue("viewMatrix", viewMatrix);
 
-//    QMatrix4x4 modelMatrixParticule;
-//    modelMatrixParticule.translate(10.0f, 1.0f, 4.0f);
-//    program_particule->setUniformValue("modelMatrix", modelMatrixParticule);
-//    program_particule->setUniformValue("particleSize", 1.0f);
-
     program_particule->setAttributeBuffer("in_position", GL_FLOAT, 0, 3, 5 * sizeof(GLfloat));
     program_particule->setAttributeBuffer("in_uv", GL_FLOAT, 3 * sizeof(GLfloat), 2, 5 * sizeof(GLfloat));
     program_particule->enableAttributeArray("in_position");
@@ -235,11 +234,11 @@ void GLArea::paintGL()
     glEnable(GL_BLEND);
 
 
-    s1.display(program_particule);
+    //s1.display(program_particule);
 
     s2.display(program_particule);
     s3.setColor(QVector3D(40/255.0,0/255.0,200/255.0));
-    s3.display(program_particule);
+    //s3.display(program_particule);
 
 
 
@@ -255,7 +254,7 @@ void GLArea::paintGL()
 
 void GLArea::keyPressEvent(QKeyEvent *ev)
 {
-    float da = 1.0f,dxy=0.1;
+    float da = 1.0f,dxy=0.2;
 
     switch(ev->key()) {
         case Qt::Key_A :

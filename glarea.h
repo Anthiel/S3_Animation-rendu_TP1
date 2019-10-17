@@ -48,10 +48,9 @@ private:
     float windowRatio = 1.0f;
     QPoint lastPos;
 
-
     Smoke s1 = {QVector3D(10.0f, 1.0f, 4.0f),0.5};
     Smoke s2 = Smoke(QVector3D(8.0f, 2.0f, 2.0f),1);
-    Smoke s3 = Smoke(QVector3D(-2.0f, 1.0f, 4.0f),0.1);
+    Smoke s3 = Smoke(QVector3D(-2.0f, 1.0f, 4.0f),0.35);
 
     QOpenGLShaderProgram *program_sol;
     QOpenGLShaderProgram *program_particule;
