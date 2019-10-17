@@ -6,6 +6,7 @@
         <file>shaders/simple.vsh</file>
         <file>textures/puff.png</file>
         <file>textures/puffs.png</file>
+        <file>textures/number.png</file>
         <file>textures/ground.jpg</file>
     </qresource>
 </RCC>

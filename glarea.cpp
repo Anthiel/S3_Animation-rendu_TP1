@@ -20,8 +20,6 @@ GLArea::GLArea(QWidget *parent) :
     setFocusPolicy(Qt::StrongFocus);    // accepte focus
     setFocus();                         // donne le focus
 
-
-
     s3.setColor(QVector3D(40/255.0,0/255.0,200/255.0));
 
     timer = new QTimer(this);
@@ -234,11 +232,10 @@ void GLArea::paintGL()
     glEnable(GL_BLEND);
 
 
-    //s1.display(program_particule);
+    s1.display(program_particule);
 
     s2.display(program_particule);
-    s3.setColor(QVector3D(40/255.0,0/255.0,200/255.0));
-    //s3.display(program_particule);
+    s3.display(program_particule);
 
 
 
