@@ -32,9 +32,9 @@ void Puff::display(QOpenGLShaderProgram *program_particule){
     modelMatrixParticule.translate(position);
     program_particule->setUniformValue("modelMatrix", modelMatrixParticule);
     program_particule->setUniformValue("particleSize", size);
-    program_particule->setUniformValue("lifeTimeSize", (float) std::min(initialLifeTime/((double) sqrt(lifeTimeLeft+1)),(double) 2*initialLifeTime) );
-    program_particule->setUniformValue("lifeTimeOpacity", (float) std::max(lifeTimeLeft/initialLifeTime -0.0, 0.0) );
-    int state=15-((lifeTimeLeft)/initialLifeTime)*15;
+    program_particule->setUniformValue("lifeTimeSize", (float) 1+5*(initialLifeTime-lifeTimeLeft)/initialLifeTime );
+    program_particule->setUniformValue("lifeTimeOpacity", (float) std::max(std::min(lifeTimeLeft/initialLifeTime, (initialLifeTime-lifeTimeLeft)*2/initialLifeTime), 0.0f));
+    int state=((int)(lifeTimeLeft*25))%16;
     int state_x=state%4;
     int state_y=state/4;
 //    qDebug() << "state" << state ;

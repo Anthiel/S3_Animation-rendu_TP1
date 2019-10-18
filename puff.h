@@ -3,6 +3,8 @@
 
 #include <QVector3D>
 #include <QOpenGLShaderProgram>
+
+#include <QOpenGLBuffer>
 #include <cmath>
 
 
